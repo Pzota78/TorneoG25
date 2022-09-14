@@ -8,18 +8,22 @@ namespace Torneo.App.Consola
         private static IRepositorioMunicipio _repoMunicipio = new RepositorioMunicipio();
         private static IRepositorioDT _repoDT = new RepositorioDT();
         private static IRepositorioEquipo _repoEquipo = new RepositorioEquipo();
+        private static IRepositorioPosicion _repoPosicion = new RepositorioPosicion();
         static void Main(string[] args)
         {
             int opcion = 0;
             do
             {
+                Console.WriteLine("--------- Menu Torneo ---------");
                 Console.WriteLine("1 Insertar Municipio");
                 Console.WriteLine("2 Insertar director tecnico");
                 Console.WriteLine("3 Insertar Equipo");
                 Console.WriteLine("4 Mostrar municipios");
                 Console.WriteLine("5 Mostrar directores tecnicos");
                 Console.WriteLine("6 Mostrar equipos");
+                Console.WriteLine("7 Insertar posicion");
                 Console.WriteLine("0 Salir");
+                Console.WriteLine("-------------------------------");
                 opcion = Int32.Parse(Console.ReadLine());
                 switch (opcion)
                 {
@@ -27,7 +31,6 @@ namespace Torneo.App.Consola
                     case 1:
                         AddMunicipio();
                         break;
-
                     case 2:
                         AddDT();
                         break;
@@ -42,6 +45,9 @@ namespace Torneo.App.Consola
                         break;
                     case 6:
                         GetAllEquipos();
+                        break;
+                    case 7:
+                        AddPosicion();
                         break;
                 }
             } while (opcion != 0);
@@ -94,7 +100,16 @@ namespace Torneo.App.Consola
             };
             _repoEquipo.AddEquipo(equipo, idMunicipio, idDT);
         }
-
+        private static void AddPosicion()
+        {
+            Console.WriteLine("Ingrese el nombre de la posicion");
+            string nombre = Console.ReadLine();
+            var posicion = new Posicion
+            {
+                Nombre = nombre,
+            };
+            _repoPosicion.AddPosicion(posicion);
+        }
         private static void GetAllMunicipios()
         {
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
