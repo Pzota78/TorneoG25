@@ -9,6 +9,7 @@ namespace Torneo.App.Consola
         private static IRepositorioDT _repoDT = new RepositorioDT();
         private static IRepositorioEquipo _repoEquipo = new RepositorioEquipo();
         private static IRepositorioPosicion _repoPosicion = new RepositorioPosicion();
+        private static IRepositorioJugador _repoJugador = new RepositorioJugador();
         static void Main(string[] args)
         {
             int opcion = 0;
@@ -22,6 +23,9 @@ namespace Torneo.App.Consola
                 Console.WriteLine("5 Mostrar directores tecnicos");
                 Console.WriteLine("6 Mostrar equipos");
                 Console.WriteLine("7 Insertar posicion");
+                Console.WriteLine("8 Mostrar posicion");
+                Console.WriteLine("9 Insertar jugador");
+                Console.WriteLine("10 Mostrar jugador");
                 Console.WriteLine("0 Salir");
                 Console.WriteLine("-------------------------------");
                 opcion = Int32.Parse(Console.ReadLine());
@@ -48,6 +52,15 @@ namespace Torneo.App.Consola
                         break;
                     case 7:
                         AddPosicion();
+                        break;
+                    case 8:
+                        GetAllPosicion();
+                        break;
+                    case 9:
+                        AddJugador();
+                        break;
+                    case 10:
+                        GetAllJugadores();
                         break;
                 }
             } while (opcion != 0);
@@ -110,6 +123,25 @@ namespace Torneo.App.Consola
             };
             _repoPosicion.AddPosicion(posicion);
         }
+        private static void AddJugador()
+        {
+            Console.WriteLine("Ingrese el nombre del jugador");
+            string nombre = Console.ReadLine();
+            Console.WriteLine("Ingrese el numero del jugador");
+            int numero = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese el id posicion");
+            int idPosicion = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese el id equipo");
+            int idEquipo = Int32.Parse(Console.ReadLine());
+            
+            var jugador = new Jugador
+            {
+                Nombre = nombre,
+                Numero = numero,
+                            
+            };
+            _repoJugador.AddJugador(jugador, idPosicion, idEquipo);
+        }
         private static void GetAllMunicipios()
         {
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
@@ -129,6 +161,20 @@ namespace Torneo.App.Consola
             foreach (var equipo in _repoEquipo.GetAllEquipos())
             {
                 Console.WriteLine(equipo.Nombre + " " + equipo.Municipio.Nombre + " " + equipo.DirectorTecnico.Nombre);
+            }
+        }
+        private static void GetAllPosicion()
+        {
+            foreach (var posicion in _repoPosicion.GetAllPosicion())
+            {
+                Console.WriteLine(posicion.Id + " "+ posicion.Nombre);
+            }
+        }
+        private static void GetAllJugadores()
+        {
+            foreach (var jugador in _repoJugador.GetAllJugadores())
+            {
+                Console.WriteLine(jugador.Id +" "+ jugador.Nombre +" "+ jugador.Equipo.Nombre +" "+ jugador.Posicion.Nombre);
             }
         }
     }
