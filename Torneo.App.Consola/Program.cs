@@ -10,6 +10,7 @@ namespace Torneo.App.Consola
         private static IRepositorioEquipo _repoEquipo = new RepositorioEquipo();
         private static IRepositorioPosicion _repoPosicion = new RepositorioPosicion();
         private static IRepositorioJugador _repoJugador = new RepositorioJugador();
+        private static IRepositorioPartido _repoPartido = new RepositorioPartido();
         static void Main(string[] args)
         {
             int opcion = 0;
@@ -26,6 +27,8 @@ namespace Torneo.App.Consola
                 Console.WriteLine("8 Mostrar posicion");
                 Console.WriteLine("9 Insertar jugador");
                 Console.WriteLine("10 Mostrar jugador");
+                Console.WriteLine("11 Insertar Partido");
+                Console.WriteLine("12 Mostrar Partido");
                 Console.WriteLine("0 Salir");
                 Console.WriteLine("-------------------------------");
                 opcion = Int32.Parse(Console.ReadLine());
@@ -61,6 +64,12 @@ namespace Torneo.App.Consola
                         break;
                     case 10:
                         GetAllJugadores();
+                        break;
+                    case 11:
+                        AddPartido();
+                        break;
+                    case 12:
+                        GetAllPartidos();
                         break;
                 }
             } while (opcion != 0);
@@ -142,6 +151,37 @@ namespace Torneo.App.Consola
             };
             _repoJugador.AddJugador(jugador, idPosicion, idEquipo);
         }
+        
+        private static void AddPartido()
+        {
+            
+            Console.WriteLine("Ingrese id equipo local");
+            int idEquipoLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese id equipo visitante");
+            int idEquipoVisitante = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese marcador local");
+            int marcadorLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese marcador visitante");
+            int marcadorVisitante = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese la fecha y hora de partido");
+            string fechahora = Console.ReadLine();
+            //Console.WriteLine("Fecha" + fechahora.ToString("MMMM dd, yyyy"));
+
+
+            DateTime dt = new DateTime(2016, 03, 07);
+            Console.WriteLine(dt.ToString());
+            //object value = String.Format("{0:y yy yyy yyyy}" fechahora = (Console.ReadLine);
+
+            var partido = new Partido
+            {
+               MarcadorLocal = marcadorLocal,
+               MarcadorVisitante = marcadorVisitante, 
+               //FechaHora = fechahora,
+                            
+            };
+            _repoPartido.AddPartido(partido, idEquipoLocal, idEquipoVisitante);
+        }
+        
         private static void GetAllMunicipios()
         {
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
@@ -175,6 +215,13 @@ namespace Torneo.App.Consola
             foreach (var jugador in _repoJugador.GetAllJugadores())
             {
                 Console.WriteLine(jugador.Id +" "+ jugador.Nombre +" "+ jugador.Equipo.Nombre +" "+ jugador.Posicion.Nombre);
+            }
+        }
+        private static void GetAllPartidos()
+        {
+            foreach (var partido in _repoPartido.GetAllPartidos())
+            {
+                Console.WriteLine(partido.Local.Nombre +" "+  partido.MarcadorLocal +" "+ partido.Visitante.Nombre +" "+ partido.MarcadorVisitante +" "+ partido.FechaHora);
             }
         }
     }
