@@ -164,19 +164,19 @@ namespace Torneo.App.Consola
             Console.WriteLine("Ingrese marcador visitante");
             int marcadorVisitante = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Ingrese la fecha y hora de partido");
-            string fechahora = Console.ReadLine();
+            DateTime fechahora = DateTime.Parse(Console.ReadLine());
             //Console.WriteLine("Fecha" + fechahora.ToString("MMMM dd, yyyy"));
 
 
-            DateTime dt = new DateTime(2016, 03, 07);
-            Console.WriteLine(dt.ToString());
+            //DateTime dt = new DateTime(2016, 03, 07);
+            //Console.WriteLine(dt.ToString());
             //object value = String.Format("{0:y yy yyy yyyy}" fechahora = (Console.ReadLine);
 
             var partido = new Partido
             {
                MarcadorLocal = marcadorLocal,
                MarcadorVisitante = marcadorVisitante, 
-               //FechaHora = fechahora,
+               FechaHora = fechahora,
                             
             };
             _repoPartido.AddPartido(partido, idEquipoLocal, idEquipoVisitante);
