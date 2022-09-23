@@ -24,5 +24,11 @@ namespace Torneo.App.Frontend.Pages.Equipos
                 return Page();
             }
         }
+
+        public IActionResult OnPost(Equipo equipo, int idMunicipio, int idDT)
+        {
+            _repoEquipo.AddEquipo(equipo, idMunicipio, idDT);
+            return RedirectToPage("Index");
+        }
     }
 }
