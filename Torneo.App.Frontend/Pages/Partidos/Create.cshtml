@@ -1,0 +1,41 @@
+﻿@page
+@model Torneo.App.Frontend.Pages.Partidos.CreateModel
+@{
+}
+<h1>Nuevo Partido</h1>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="partido.FechaHora"></label>
+        <input asp-for="partido.FechaHora" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="idLocal">Equipo Local</label>
+        <select id="idLocal" name="idLocal" class="form-control">
+            @foreach (var equipo in Model.equipoLocal)
+            {
+                <option value="@equipo.Id">@equipo.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="partido.MarcadorLocal"></label>
+        <input asp-for="partido.MarcadorLocal" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="idVisitante">Equipo Visitante</label>
+        <select id="idVisitante" name="idVisitante" class="form-control">
+            @foreach (var equipo in Model.equipoVisitante)
+            {
+                <option value="@equipo.Id">@equipo.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="partido.MarcadorVisitante"></label>
+        <input asp-for="partido.MarcadorVisitante" class="form-control">
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-primary btn-block">Crear Partido</button>
+</form>
+<br><br>
+<a class="btn btn-secondary" asp-page="./Index">Volver</a>
