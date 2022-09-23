@@ -10,9 +10,10 @@
             <th scope="col">Id</th>
             <th scope="col">Fecha Hora</th>
             <th scope="col">Equipo Local</th>
-            <th scope="col">Marcador Local</th>
+            @* <th scope="col">Marcador Local</th> *@
             <th scope="col">Equipo Visitante</th>
-            <th scope="col">Marcador Visitante</th>
+            @* <th scope="col">Marcador Visitante</th> *@
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +23,14 @@
                 <th scope="row">@partido.Id</th>
                 <td>@partido.FechaHora</td>
                 <td>@partido.Local.Nombre</td>
-                <td>@partido.MarcadorLocal</td>
+                @* <td>@partido.MarcadorLocal</td> *@
                 <td>@partido.Visitante.Nombre</td>
-                <td>@partido.MarcadorVisitante</td>
+                @* <td>@partido.MarcadorVisitante</td> *@
+                <td>
+                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@partido.Id">
+                        Detalle
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
