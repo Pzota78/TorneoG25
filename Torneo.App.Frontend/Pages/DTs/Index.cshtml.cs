@@ -18,5 +18,11 @@ namespace Torneo.App.Frontend.Pages.DTs
         {
             dts = _repoDT.GetAllDT();
         }
+        public IActionResult OnPostDelete(int id)
+        {
+            dts = _repoDT.GetAllDT();
+            _repoDT.DeleteDT(id);
+            return Page();
+        }
     }
 }
