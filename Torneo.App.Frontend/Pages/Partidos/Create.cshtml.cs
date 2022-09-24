@@ -30,15 +30,11 @@ namespace Torneo.App.Frontend.Pages.Partidos
         }
         public IActionResult OnPost(Partido partido, int idLocal, int idVisitante)
         {
-            if (ModelState.IsValid)
-            {
+            
             _repoPartido.AddPartido(partido, idLocal, idVisitante);
             return RedirectToPage("Index");
-            }
-            else
-            {
-                return Page();
-            }
+            
         }
+        
     }
 }

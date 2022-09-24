@@ -36,7 +36,9 @@ namespace Torneo.App.Frontend.Pages.Jugadores
             }
             else
             {
+            {
                 return RedirectToPage("Create");
+            }
             }
         }
     }
