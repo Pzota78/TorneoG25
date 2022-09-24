@@ -35,5 +35,23 @@ namespace Torneo.App.Persistencia
             return equipoEncontrado;
         }
 
+        public Equipo UpdateEquipo(Equipo equipo, int idMunicipio, int idDT)
+        {
+            var municipioEncontrado = _dataContext.Municipios.Find(idMunicipio);
+            var dtEncontrado = _dataContext.DirectoresTecnicos.Find(idDT);
+            equipo.Municipio = municipioEncontrado;
+            equipo.DirectorTecnico = dtEncontrado;
+
+            var equipoEncontrado = _dataContext.Equipos.Find(equipo.Id);
+            if (equipoEncontrado != null)
+            {
+                equipoEncontrado.Nombre = equipo.Nombre;
+                equipoEncontrado.Municipio = municipioEncontrado;
+                equipoEncontrado.DirectorTecnico = dtEncontrado;
+                _dataContext.SaveChanges();
+            }
+            return equipoEncontrado;
+        }
+
     }
 }

@@ -35,5 +35,22 @@ namespace Torneo.App.Persistencia
             .FirstOrDefault();
             return jugadorEncontrado;
         }
+        public Jugador UpdateJugador(Jugador jugador, int idPosicion, int idEquipo)
+        {
+            var posicionEncontrado = _dataContext.Posiciones.Find(idPosicion);
+            var equipoEncontrado = _dataContext.Equipos.Find(idEquipo);
+            jugador.Posicion = posicionEncontrado;
+            jugador.Equipo = equipoEncontrado;
+
+            var jugadorEncontrado = _dataContext.Jugadores.Find(jugador.Id);
+            if (jugadorEncontrado != null)
+            {
+                jugadorEncontrado.Nombre = jugador.Nombre;
+                jugadorEncontrado.Posicion = posicionEncontrado;
+                jugadorEncontrado.Equipo = equipoEncontrado;
+                _dataContext.SaveChanges();
+            }
+            return jugadorEncontrado;
+        }
     }
 }
