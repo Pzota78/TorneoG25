@@ -9,6 +9,7 @@ namespace Torneo.App.Frontend.Pages.Jugadores
     {
         private readonly IRepositorioJugador _repoJugador;
         public IEnumerable<Jugador> jugadores { get; set; }
+        public bool ErrorEliminar { get; set; }
 
         public IndexModel(IRepositorioJugador repoJugador)
         {
@@ -17,12 +18,22 @@ namespace Torneo.App.Frontend.Pages.Jugadores
         public void OnGet()
         {
             jugadores = _repoJugador.GetAllJugadores();
+            ErrorEliminar = false;
         }
         public IActionResult OnPostDelete(int id)
         {
-            jugadores = _repoJugador.GetAllJugadores();
-            _repoJugador.DeleteJugador(id);
-            return Page();
+            try
+            {
+                _repoJugador.DeleteJugador(id);
+                jugadores = _repoJugador.GetAllJugadores();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                jugadores = _repoJugador.GetAllJugadores();
+                ErrorEliminar = true;
+                return Page();
+            }
         }
     }
 }

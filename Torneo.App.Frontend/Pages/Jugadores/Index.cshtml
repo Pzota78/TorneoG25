@@ -33,11 +33,20 @@
                     </a>
                 </td>
                 <td>
-                <form method="post" class="d-inline">
-                        <button asp-page-handler="Delete" asp-route-id="@jugador.Id" onclick="return confirm(Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@jugador.Id"
+                        onclick="return confirm('Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
                             Eliminar
                         </button>
-                </form>
+                    </form>
+                </td>
+                <td>
+                    @if (Model.ErrorEliminar)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Conflicto al eliminar el Jugador
+                        </div>
+                    }
                 </td>
             </tr>
         }

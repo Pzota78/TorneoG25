@@ -17,27 +17,37 @@
     <tbody>
         @foreach (var municipio in Model.municipios)
         {
-                <tr>
-                    <th scope="row">@municipio.Id</th>
-                    <td>@municipio.Nombre</td>
-                    <td>
-                        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@municipio.Id">
-                            Detalle
-                        </a>
-                    <td>
-                        <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@municipio.Id">
-                            Editar
-                        </a>
-                    </td>
-                    <td>
+            <tr>
+                <th scope="row">@municipio.Id</th>
+                <td>@municipio.Nombre</td>
+                <td>
+                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@municipio.Id">
+                        Detalle
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@municipio.Id">
+                        Editar
+                    </a>
+                </td>
+                <td>
                     <form method="post" class="d-inline">
-                        <button asp-page-handler="Delete" asp-route-id="@municipio.Id" onclick="return confirm(Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
+                        <button asp-page-handler="Delete" asp-route-id="@municipio.Id"
+                        onclick="return confirm('Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
                             Eliminar
                         </button>
                     </form>
-                    </td>
                 </td>
-                </tr>
+                <td>
+                    @if (Model.ErrorEliminar)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Conflicto al eliminar el Municipio
+                        </div>
+                    }
+                </td>
+            </tr>
+
         }
     </tbody>
 </table>

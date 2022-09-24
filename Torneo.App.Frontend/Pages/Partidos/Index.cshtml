@@ -14,7 +14,7 @@
             <th scope="col">Equipo Local</th>
             @* <th scope="col">Marcador Local</th> *@
             <th scope="col">Equipo Visitante</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th scope="col" colspan="3">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +36,22 @@
                     <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@partido.Id">
                         Editar
                     </a>
+                </td>
+                <td>
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@partido.Id"
+                        onclick="return confirm('Esta Seguro de eliminar el Partido?')" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    @if (Model.ErrorEliminar)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Conflicto al eliminar el Partido
+                        </div>
+                    }
                 </td>
             </tr>
         }

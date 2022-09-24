@@ -9,6 +9,7 @@ namespace Torneo.App.Frontend.Pages.Partidos
     {
         private readonly IRepositorioPartido _repoPartido;
         public IEnumerable<Partido> partidos{ get; set; }
+        public bool ErrorEliminar { get; set; }
 
         public IndexModel(IRepositorioPartido repoPartido)
         {
@@ -17,6 +18,22 @@ namespace Torneo.App.Frontend.Pages.Partidos
         public void OnGet()
         {
             partidos = _repoPartido.GetAllPartidos();
+            ErrorEliminar = false;
+        }
+        public IActionResult OnPostDelete(int id)
+        {
+            try
+            {
+                _repoPartido.DeletePartido(id);
+                partidos = _repoPartido.GetAllPartidos();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                partidos = _repoPartido.GetAllPartidos();
+                ErrorEliminar = true;
+                return Page();
+            }
         }
     }
 }

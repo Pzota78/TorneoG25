@@ -12,7 +12,7 @@
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">D.T</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th scope="col" colspan="4">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +31,21 @@
                     <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@equipo.Id">
                         Editar
                     </a>
+                </td>
+                <td>
+                <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@equipo.Id" onclick="return confirm('Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                </form>
+                </td>
+                <td>
+                    @if (Model.ErrorEliminar)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Conflicto al eliminar el Equipo
+                        </div>
+                    }
                 </td>
             </tr>
         }
