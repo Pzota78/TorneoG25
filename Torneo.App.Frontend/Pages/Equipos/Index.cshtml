@@ -12,7 +12,7 @@
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">D.T</th>
-            <th scope="col">Acciones</th>
+            <th scope="col" colspan="2">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +25,11 @@
                 <td>
                     <a class="btn btn-primary" asp-page="./Details" asp-route-id="@equipo.Id">
                         Detalle
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@equipo.Id">
+                        Editar
                     </a>
                 </td>
             </tr>
