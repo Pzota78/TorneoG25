@@ -12,7 +12,7 @@
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Numero</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th scope="col" colspan="3">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +31,13 @@
                     <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@jugador.Id">
                         Editar
                     </a>
+                </td>
+                <td>
+                <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@jugador.Id" onclick="return confirm(Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                </form>
                 </td>
             </tr>
         }

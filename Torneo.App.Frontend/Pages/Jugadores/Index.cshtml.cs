@@ -18,5 +18,11 @@ namespace Torneo.App.Frontend.Pages.Jugadores
         {
             jugadores = _repoJugador.GetAllJugadores();
         }
+        public IActionResult OnPostDelete(int id)
+        {
+            jugadores = _repoJugador.GetAllJugadores();
+            _repoJugador.DeleteJugador(id);
+            return Page();
+        }
     }
 }
