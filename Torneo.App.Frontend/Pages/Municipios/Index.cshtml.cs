@@ -8,7 +8,7 @@ namespace Torneo.App.Frontend.Pages.Municipios
     public class IndexModel : PageModel
     {
         private readonly IRepositorioMunicipio _repoMunicipio;
-        public IEnumerable<Municipio> municipios{ get; set; }
+        public IEnumerable<Municipio> municipios { get; set; }
 
         public IndexModel(IRepositorioMunicipio repoMunicipio)
         {
@@ -18,6 +18,12 @@ namespace Torneo.App.Frontend.Pages.Municipios
         {
             municipios = _repoMunicipio.GetAllMunicipios();
         }
-                
+        public IActionResult OnPostDelete(int id)
+        {
+            municipios = _repoMunicipio.GetAllMunicipios();
+            _repoMunicipio.DeleteMunicipio(id);
+            return Page();
+        }
+
     }
 }

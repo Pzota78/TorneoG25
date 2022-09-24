@@ -11,26 +11,33 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th scope="col" colspan="3">Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var municipio in Model.municipios)
         {
-            <tr>
-                <th scope="row">@municipio.Id</th>
-                <td>@municipio.Nombre</td>
-                <td>
-                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@municipio.Id">
-                        Detalle
-                    </a>
-                <td>
-                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@municipio.Id">
-                        Editar
-                    </a>
+                <tr>
+                    <th scope="row">@municipio.Id</th>
+                    <td>@municipio.Nombre</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@municipio.Id">
+                            Detalle
+                        </a>
+                    <td>
+                        <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@municipio.Id">
+                            Editar
+                        </a>
+                    </td>
+                    <td>
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@municipio.Id" onclick="return confirm(Esta Seguro de eliminar el municipio?')" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </form>
+                    </td>
                 </td>
-                </td>
-            </tr>
+                </tr>
         }
     </tbody>
 </table>
