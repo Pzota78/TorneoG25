@@ -5,5 +5,6 @@ namespace Torneo.App.Persistencia
     {
         public Jugador AddJugador(Jugador jugador, int idPosicion, int idEquipo);
         public IEnumerable<Jugador> GetAllJugadores();
+        public Jugador GetJugador(int idJugador);
     }
 }

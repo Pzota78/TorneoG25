@@ -29,8 +29,15 @@ namespace Torneo.App.Frontend.Pages.Jugadores
         }
         public IActionResult OnPost(Jugador jugador, int idPosicion, int idEquipo)
         {
+            if (ModelState.IsValid)
+            {
             _repoJugador.AddJugador(jugador, idPosicion, idEquipo);
             return RedirectToPage("Index");
+            }
+            else
+            {
+                return RedirectToPage("Create");
+            }
         }
     }
 }

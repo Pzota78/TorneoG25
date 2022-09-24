@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace Torneo.App.Dominio
 {
     public class Partido
